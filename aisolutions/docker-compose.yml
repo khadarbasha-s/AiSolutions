@@ -1,0 +1,16 @@
+# Local PostgreSQL with pgvector (pgvector is needed for the Phase 2 AI search features).
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: infodrizzle-ai-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: infodrizzle
+      POSTGRES_PASSWORD: infodrizzle
+      POSTGRES_DB: infodrizzle_ai
+    ports:
+      - "5433:5432"
+    volumes:
+      - infodrizzle_ai_data:/var/lib/postgresql/data
+volumes:
+  infodrizzle_ai_data:
